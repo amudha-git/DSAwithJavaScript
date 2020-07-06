@@ -1,39 +1,34 @@
 // ====================================
-// Functional Way
+// ES6 Class Way
 // ====================================
-"use strict";
 
-var Stack = (function () {
-  function Stack() {
+class Stack {
+  constructor() {
     this.stack = [];
     this.top = 0;
   }
 
-  var _proto = Stack.prototype;
-  _proto.push = function push(val) {
+  push(val) {
     this.stack[this.top] = val;
     return ++this.top;
-  };
+  }
 
-  _proto.pop = function pop() {
+  pop() {
     if (this.top === 0) throw new Error("stack is empty");
     this.top--;
     let result = this.stack[this.top];
     this.stack = this.stack.splice(0, this.top);
     return result;
-  };
+  }
 
-  _proto.size = function size() {
+  size() {
     return this.top;
-  };
+  }
 
-  _proto.peek = function peek() {
-    if (this.top === 0) throw new Error("stack is empty");
-    return this.stack[this.top];
-  };
-
-  return Stack;
-})();
+  peek() {
+    return this.top;
+  }
+}
 
 // ====================================
 // Example using stack

@@ -46,7 +46,7 @@ class Linkedlist {
     return elementToPop;
   }
 
-  // Insert from beginning of list
+  // Insert into beginning of list
   unshift(val) {
     let node = new Node(val);
     if (this.length === 0) {
