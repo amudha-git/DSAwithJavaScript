@@ -184,3 +184,16 @@ linkedlist.insert(1, 2);
 // ====================================
 
 linkedlist.remove(3);
+
+// ====================================
+// Time Complexity
+// ====================================
+
+// push - O(n)
+// pop - O(n)
+// shift - O(1)
+// unshift - O(1)
+// get - O(n)
+// set - O(n)
+// insert - O(n)
+// remove - O(n)
