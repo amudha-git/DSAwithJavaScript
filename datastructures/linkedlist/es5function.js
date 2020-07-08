@@ -12,7 +12,7 @@ var Linkedlist = (function () {
     this.length = 0;
   }
 
-  _proto = Linkedlist.prototype;
+  var _proto = Linkedlist.prototype;
 
   _proto.push = function push(value) {
     var node = new Node(value);

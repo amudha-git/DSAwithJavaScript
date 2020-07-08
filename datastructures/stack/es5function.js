@@ -16,7 +16,7 @@ var Stack = (function () {
   };
 
   _proto.pop = function pop() {
-    if (this.top === 0) throw new Error("stack is empty");
+    if (this.top === 0) return undefined;
     this.top--;
     let result = this.stack[this.top];
     this.stack = this.stack.splice(0, this.top);
@@ -28,7 +28,7 @@ var Stack = (function () {
   };
 
   _proto.peek = function peek() {
-    if (this.top === 0) throw new Error("stack is empty");
+    if (this.top === 0) return undefined;
     return this.stack[this.top];
   };
 

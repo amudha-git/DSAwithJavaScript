@@ -15,26 +15,31 @@ class Linkedlist {
   // Insert into end of list
   push(value) {
     let node = new Node(value);
-    if (this.head === null && this.tail === null) {
-      this.head = node;
-      this.tail = node;
+    let head = this.head;
+    let tail = this.tail;
+    let length = this.length;
+    if (head === null && tail === null) {
+      head = node;
+      tail = node;
     } else {
-      this.tail.next = node;
-      this.tail = node;
+      tail.next = node;
+      tail = node;
     }
-    ++this.length;
-    return this.length - 1;
+    return length++;
   }
 
   // Remove from beginning of list
   shift() {
     if (this.length === 0) return undefined;
-    let oldHead = this.head;
-    this.head = oldHead.next;
-    oldHead.next = null;
+    let head = this.head;
+    let length = this.length;
+    let tail = this.tail;
+
+    let oldHead = head;
+    head = oldHead.next;
     --this.length;
-    if (this.length === 0) {
-      this.tail = null;
+    if (length === 0) {
+      tail = null;
     }
     return oldHead.value;
   }
@@ -42,22 +47,33 @@ class Linkedlist {
 
 class Queue {
   constructor() {
-    this.queue = new Linkedlist();
+    this.linkedlist = new Linkedlist();
   }
 
   enqueue(val) {
-    return this.queue.push(val);
+    const queue = this.linkedlist;
+    return queue.push(val);
   }
 
   dequeue() {
-    return this.queue.shift();
+    const queue = this.linkedlist;
+    return queue.shift();
   }
 
   peek() {
-    return this.queue.head ? this.queue.head.value : undefined;
+    let head = this.linkedlist.head;
+    return head ? head.value : undefined;
   }
 
   size() {
-    return this.queue.length;
+    let length = this.linkedlist.length;
+    return length;
   }
 }
+
+// ====================================
+// Time Complexity
+// ====================================
+
+// enqueue - O(1)
+// dequeue - O(1)

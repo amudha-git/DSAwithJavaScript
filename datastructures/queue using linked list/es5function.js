@@ -16,28 +16,32 @@ var Linkedlist = /*#__PURE__*/ (function () {
 
   _proto.push = function push(value) {
     var node = new Node(value);
+    var head = this.head;
+    var tail = this.tail;
+    var length = this.length;
 
-    if (this.head === null && this.tail === null) {
-      this.head = node;
-      this.tail = node;
+    if (head === null && tail === null) {
+      head = node;
+      tail = node;
     } else {
-      this.tail.next = node;
-      this.tail = node;
+      tail.next = node;
+      tail = node;
     }
 
-    ++this.length;
-    return this.length - 1;
+    return length++;
   }; // Remove from beginning of list
 
   _proto.shift = function shift() {
     if (this.length === 0) return undefined;
-    var oldHead = this.head;
-    this.head = oldHead.next;
-    oldHead.next = null;
+    var head = this.head;
+    var length = this.length;
+    var tail = this.tail;
+    var oldHead = head;
+    head = oldHead.next;
     --this.length;
 
-    if (this.length === 0) {
-      this.tail = null;
+    if (length === 0) {
+      tail = null;
     }
 
     return oldHead.value;
@@ -48,26 +52,36 @@ var Linkedlist = /*#__PURE__*/ (function () {
 
 var Queue = /*#__PURE__*/ (function () {
   function Queue() {
-    this.queue = new Linkedlist();
+    this.linkedlist = new Linkedlist();
   }
 
   var _proto2 = Queue.prototype;
 
   _proto2.enqueue = function enqueue(val) {
-    return this.queue.push(val);
+    var queue = this.linkedlist;
+    return queue.push(val);
   };
 
   _proto2.dequeue = function dequeue() {
-    return this.queue.shift();
+    var queue = this.linkedlist;
+    return queue.shift();
   };
 
   _proto2.peek = function peek() {
-    return this.queue.head ? this.queue.head.value : undefined;
+    var head = this.linkedlist.head;
+    return head ? head.value : undefined;
   };
 
   _proto2.size = function size() {
-    return this.queue.length;
+    var length = this.linkedlist.length;
+    return length;
   };
 
   return Queue;
 })();
+
+// ====================================
+// Time Complexity
+// ====================================
+// enqueue - O(1)
+// dequeue - O(1)
