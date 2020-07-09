@@ -201,4 +201,3 @@ linkedlist.remove(3);
 // set - O(n)
 // insert - O(n)
 // remove - O(n)
-module.exports.LinkedList = { Linkedlist, Node };
