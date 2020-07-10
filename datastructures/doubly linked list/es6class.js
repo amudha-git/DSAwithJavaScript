@@ -114,7 +114,7 @@ class DoublyLinkedList {
     if (index === this.length) return this.push(value);
     let newNode = new Node(value);
     let previousNode = this.get(index - 1);
-    nextNode = previousNode.next;
+    let nextNode = previousNode.next;
     (newNode.previous = previousNode), (previousNode.next = newNode);
     (newNode.next = nextNode), (nextNode.previous = newNode);
     this.length++;
@@ -137,3 +137,73 @@ class DoublyLinkedList {
     return removedNode;
   }
 }
+
+// ====================================
+// new DoublyLinkedList
+// ====================================
+
+var doublylinkedlist = new DoublyLinkedList();
+
+// ====================================
+// push
+// ====================================
+
+doublylinkedlist.push(1);
+doublylinkedlist.push(2);
+doublylinkedlist.push(3);
+doublylinkedlist.push(4);
+
+// ====================================
+// pop
+// ====================================
+
+doublylinkedlist.pop();
+
+// ====================================
+// unshift
+// ====================================
+
+doublylinkedlist.unshift(0);
+
+// ====================================
+// push
+// ====================================
+
+doublylinkedlist.shift();
+
+// ====================================
+// get
+// ====================================
+
+doublylinkedlist.get(2);
+
+// ====================================
+// set
+// ====================================
+
+doublylinkedlist.set(2, Infinity);
+
+// ====================================
+// insert
+// ====================================
+
+doublylinkedlist.insert(1, 2);
+
+// ====================================
+// remove
+// ====================================
+
+doublylinkedlist.remove(3);
+
+// ====================================
+// Time Complexity
+// ====================================
+
+// push - O(1)
+// pop - O(1)
+// shift - O(1)
+// unshift - O(1)
+// get - O(n/2) = O(n)
+// set - O(n/2) = O(n)
+// insert - O(n/2) = O(n)
+// remove - O(n/2) = O(n)
