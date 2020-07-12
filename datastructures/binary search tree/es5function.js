@@ -1,25 +1,31 @@
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
+"use strict";
 
-class BST {
-  constructor() {
+var Node = function Node(value) {
+  this.value = value;
+  this.left = null;
+  this.right = null;
+};
+
+var BST = /*#__PURE__*/ (function () {
+  function BST() {
     this.root = null;
   }
 
-  insert(value) {
-    const newNode = new Node(value);
+  var _proto = BST.prototype;
+
+  _proto.insert = function insert(value) {
+    var newNode = new Node(value);
+
     if (this.root === null) {
       this.root = newNode;
       return this;
     }
-    let current = this.root;
+
+    var current = this.root;
+
     while (true) {
       if (current.value === value) return undefined;
+
       if (value < current.value) {
         if (current.left === null) current.left = newNode;
         current = current.left;
@@ -27,43 +33,49 @@ class BST {
         if (current.right === null) current.right = newNode;
         current = current.right;
       }
+
       return current;
     }
-  }
+  };
 
-  find(value) {
-    let current = this.root;
-    let found = false;
+  _proto.find = function find(value) {
+    var current = this.root;
+    var found = false;
+
     while (current && !found) {
       if (value < current.value) current = current.left;
       else if (value > current.value) current = current.right;
       else found = true;
     }
+
     return found;
-  }
+  };
 
-  includes(value) {
-    const found = this.find(value);
+  _proto.includes = function includes(value) {
+    var found = this.find(value);
     return;
-  }
+  };
 
-  breadthFirstTraversal() {
-    let result = [];
-    let queue = [];
-    let node;
-    let current = this.root;
+  _proto.breadthFirstTraversal = function breadthFirstTraversal() {
+    var result = [];
+    var queue = [];
+    var node;
+    var current = this.root;
     queue.push(current);
+
     while (queue.length) {
       node = queue.shift();
       result.push(node.value);
       if (node.left) queue.push(node.left);
       if (node.right) queue.push(node.right);
     }
-    return result;
-  }
 
-  depthFirstPreOrder() {
-    let result = [];
+    return result;
+  };
+
+  _proto.depthFirstPreOrder = function depthFirstPreOrder() {
+    var result = [];
+
     function traverse(current) {
       result.push(current.value);
       if (current.left) traverse(current.left);
@@ -72,27 +84,33 @@ class BST {
 
     traverse(this.root);
     return result;
-  }
+  };
 
-  depthFirstInOrder() {
-    let result = [];
+  _proto.depthFirstInOrder = function depthFirstInOrder() {
+    var result = [];
+
     function traverse(current) {
       if (current.left) traverse(current.left);
       result.push(current.value);
       if (current.right) traverse(current.right);
     }
+
     traverse(this.root);
     return result;
-  }
+  };
 
-  depthFirstPostOrder() {
-    let result = [];
+  _proto.depthFirstPostOrder = function depthFirstPostOrder() {
+    var result = [];
+
     function traverse(current) {
       if (current.left) traverse(current.left);
       if (current.right) traverse(current.right);
       result.push(current.value);
     }
+
     traverse(this.root);
     return result;
-  }
-}
+  };
+
+  return BST;
+})();
