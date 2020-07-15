@@ -1,10 +1,12 @@
 class Stack {
-  constructor() {
+  constructor(capacity = 10) {
     this.stack = [];
+    this.capacity = capacity;
     this.top = 0;
   }
 
   push(val) {
+    if (this.top === this.capacity) throw new Error("Stack is full");
     this.stack[this.top] = val;
     return ++this.top;
   }
@@ -25,13 +27,3 @@ class Stack {
     return this.top === 0 ? new Error("Stack is empty") : this.top;
   }
 }
-
-// ====================================
-// Time Complexity
-
-// Push/Insertion - O(1)
-// Pop/Deletion - O(1)
-// Accessing/Search - O(n)
-
-// Space Complexity - O(n)
-// ====================================

@@ -1,62 +1,31 @@
 "use strict";
 
-var Stack = (function () {
-  function Stack() {
+class Stack {
+  constructor(capacity = 10) {
     this.stack = [];
+    this.capacity = capacity;
     this.top = 0;
   }
 
-  var _proto = Stack.prototype;
-  _proto.push = function push(val) {
+  push(val) {
+    if (this.top === this.capacity) throw new Error("Stack is full");
     this.stack[this.top] = val;
     return ++this.top;
-  };
+  }
 
-  _proto.pop = function pop() {
+  pop() {
     if (this.top === 0) throw new Error("Stack is empty");
     this.top--;
     let result = this.stack[this.top];
     this.stack = this.stack.splice(0, this.top);
     return result;
-  };
+  }
 
-  _proto.size = function size() {
+  size() {
     return this.top;
-  };
-
-  _proto.peek = function peek() {
-    if (this.top === 0) throw new Error("Stack is empty");
-    return this.stack[this.top];
-  };
-
-  return Stack;
-})();
-
-// ====================================
-// Example using stack
-// ====================================
-
-function reverseAString(string) {
-  let stack = new Stack();
-  let reversedString = "";
-
-  for (let char of string) {
-    stack.push(char);
   }
 
-  let size = stack.size();
-  for (let i = 0; i < size; i++) {
-    reversedString += stack.pop();
+  peek() {
+    return this.top === 0 ? new Error("Stack is empty") : this.top;
   }
-  return reversedString;
 }
-
-// ====================================
-// Time Complexity
-
-// Push/Insertion - O(1)
-// Pop/Deletion - O(1)
-// Accessing/Search - O(n)
-
-// Space Complexity - O(n)
-// ====================================
