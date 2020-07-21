@@ -85,3 +85,23 @@ class PriorityQueue {
     }
   }
 }
+
+let pq = new PriorityQueue();
+
+pq.enqueue("Cold", 1); // 0
+pq.enqueue("fever", 2); // 0
+pq.enqueue("accident", 10); // 0
+pq.enqueue("accident #2", 10); // 1
+pq.enqueue("accident #3", 10); // 4
+pq.enqueue("dengue", 5); // 2
+pq.enqueue("dengue", 5); // 6
+pq.enqueue("covid-19", 100); // 0
+pq.dequeue(); // Node { value:'covid-19', priority:100}
+pq.dequeue(); // Node { value:'accident', priority:10}
+pq.dequeue(); // Node {value:'accident #2', priority:10}
+pq.dequeue(); // Node {value:'accident #3', priority:10}
+pq.dequeue(); // Node {value:'dengue', priority:5}
+pq.dequeue();// Node {value:'dengue', priority:5}
+pq.dequeue(); // Node {value:'fever', priority:2}
+pq.dequeue(); // Node {value:'cold', priority:1}
+pq.dequeue(); // undefined
