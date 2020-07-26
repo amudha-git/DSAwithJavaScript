@@ -1,46 +1,66 @@
 class Graph {
   constructor() {
+    // to store vertex and its neighbours
+    //   [
+    //       india:['china','sri lanka'],
+    //       srilanka:[ neighbours ],
+    //       china: [neighbors]
+    //     ]
+
     this.adjacencyList = [];
   }
 
   addVertex(vertex) {
+    // check if vertex exists or not
     if (this.adjacencyList[vertex] === undefined)
+      // if vertex doesnot exist, make it an empty array so that we can push neighbours into it
       this.adjacencyList[vertex] = [];
-    return this;
   }
 
   addEdge(vertex1, vertex2) {
-    if (
-      this.adjacencyList[vertex1] === undefined ||
-      this.adjacencyList[vertex2] === undefined
-    )
-      return undefined;
-
-    this.adjacencyList[vertex2].push(vertex1);
-    this.adjacencyList[vertex1].push(vertex2);
-  }
-
-  removeEdge(vertex1, vertex2) {
-    let adjacencyList = this.adjacencyList;
+    const adjacencyList = this.adjacencyList;
+    // check if vertices exists or not
     if (
       adjacencyList[vertex1] === undefined ||
       adjacencyList[vertex2] === undefined
     )
       return undefined;
+    // push vertex1 to vertex2's neighbour list
+    adjacencyList[vertex2].push(vertex1);
+    // push vertex2 to vertex1's neighbour list
+    adjacencyList[vertex1].push(vertex2);
+  }
+
+  removeEdge(vertex1, vertex2) {
+    const adjacencyList = this.adjacencyList;
+    // check if vertices exists or not
+    if (
+      adjacencyList[vertex1] === undefined ||
+      adjacencyList[vertex2] === undefined
+    )
+      return undefined;
+    // remove vertex2 from vertex1's neighbour list
     adjacencyList[vertex1] = adjacencyList[vertex1].filter(
-      (v) => v !== vertex2
+      (vertex) => vertex !== vertex2
     );
+
+    // remove vertex1 from vertex2's neighbour list
     adjacencyList[vertex2] = adjacencyList[vertex2].filter(
-      (v) => v !== vertex1
+      (vertex) => vertex !== vertex1
     );
   }
 
   removeVertex(vertex) {
-    if (this.adjacencyList[vertex] === undefined) return undefined;
-    for (let v of this.adjacencyList[vertex]) {
-      this.removeEdge(v, vertex);
+    const adjacencyList = this.adjacencyList;
+    // check if vertex exists or not
+    if (adjacencyList[vertex] === undefined) return undefined;
+    // remove every edge between other vertices
+    for (let neightbourVertex of adjacencyList[vertex]) {
+      // remove edge between currentVertex and neighbourVertex
+      this.removeEdge(neightbourVertex, vertex);
     }
-    delete this.adjacencyList[vertex];
+    // delete the vertex from adjacencyList
+    delete adjacencyList[vertex];
   }
 }
 
@@ -87,5 +107,5 @@ print(graph.adjacencyList);
 
 graph.removeVertex("japan");
 console.log(graph.removeVertex());
-console.log(graph.removeEdge("india", "russia"));
+console.log(graph.removeEdge("india", "india"));
 print(graph.adjacencyList);
