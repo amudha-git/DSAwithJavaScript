@@ -1,0 +1,22 @@
+{
+  "name": "thealgorithms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./datastructures/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harishsambasivam/DSAwithJavaScript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harishsambasivam/DSAwithJavaScript/issues"
+  },
+  "homepage": "https://github.com/harishsambasivam/DSAwithJavaScript#readme",
+  "devDependencies": {
+    "chai": "^4.2.0"
+  }
+}

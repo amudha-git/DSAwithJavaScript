@@ -106,6 +106,5 @@ graph.addEdge("india", "sri lanka");
 print(graph.adjacencyList);
 
 graph.removeVertex("japan");
-console.log(graph.removeVertex());
 console.log(graph.removeEdge("india", "india"));
 print(graph.adjacencyList);
